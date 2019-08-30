@@ -429,7 +429,7 @@ public class FirebasePlugin extends CordovaPlugin {
             public void run() {
                 try {
                     byte[] bytes = namespace == null ? FirebaseRemoteConfig.getInstance().getByteArray(key)
-                            : FirebaseRemoteConfig.getInstance().getByteArray(key, namespace);
+                            : FirebaseRemoteConfig.getInstance().getByteArray(key);
                     JSONObject object = new JSONObject();
                     object.put("base64", Base64.encodeToString(bytes, Base64.DEFAULT));
                     object.put("array", new JSONArray(bytes));
@@ -446,7 +446,7 @@ public class FirebasePlugin extends CordovaPlugin {
             public void run() {
                 try {
                     FirebaseRemoteConfigValue value = namespace == null ? FirebaseRemoteConfig.getInstance().getValue(key)
-                            : FirebaseRemoteConfig.getInstance().getValue(key, namespace);
+                            : FirebaseRemoteConfig.getInstance().getValue(key);
                     callbackContext.success(value.asString());
                 } catch (Exception e) {
                     callbackContext.error(e.getMessage());
@@ -500,7 +500,7 @@ public class FirebasePlugin extends CordovaPlugin {
                     if (namespace == null)
                         FirebaseRemoteConfig.getInstance().setDefaults(defaultsToMap(defaults));
                     else
-                        FirebaseRemoteConfig.getInstance().setDefaults(defaultsToMap(defaults), namespace);
+                        FirebaseRemoteConfig.getInstance().setDefaults(defaultsToMap(defaults));
                     callbackContext.success();
                 } catch (Exception e) {
                     callbackContext.error(e.getMessage());

@@ -73,6 +73,13 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
 //            sendNotification(id, title, text, remoteMessage.getData(), showNotification);
 //        }
     }
+	
+	@Override
+	public void onNewToken(String refreshedToken) {
+        super.onNewToken(refreshedToken);
+        Log.d(TAG, "Refreshed token: " + refreshedToken);
+		FirebasePlugin.sendToken(refreshedToken);
+	}
 
     private void sendNotification(String id, String title, String messageBody, Map<String, String> data, boolean showNotification) {
         Bundle bundle = new Bundle();
